@@ -46,14 +46,24 @@ function counter() {
   return i++;
 }
 
+let nav = document.querySelector("nav")
+let prependA = document.createElement("a");
+let appendA = document.createElement("a");
+nav.append(prependA);
+nav.prepend(appendA);
+
+
 let navAnchorInnerTexts = []
 for (const key in siteContent["nav"]) {
   navAnchorInnerTexts.push(siteContent["nav"][key])
 }
+navAnchorInnerTexts.unshift("prependA")
+navAnchorInnerTexts.splice(-1, 1, "appendA");
 
 let navAnchor = document.querySelectorAll("a");
 navAnchor.forEach(element => {
   element.innerText = navAnchorInnerTexts[counter()];
+  element.style.color = "green"
 });
 
 
