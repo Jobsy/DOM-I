@@ -67,41 +67,60 @@ navAnchor.forEach(element => {
 });
 
 
+
+
 let ctaProperties = []
 for (const key in siteContent["cta"]) {
   ctaProperties.push(siteContent["cta"][key])
-} 
-// console.log(ctaProperties)
+}
+
 let cta = document.querySelector(".cta").children;
 cta[0].children[0].innerText = ctaProperties[0];
 cta[0].children[1].innerText = ctaProperties[1];
 cta[1].setAttribute('src', ctaProperties[2]);
 
 
+
+
 let mainContentProperties = []
+let h4Keys = []
+let contentKeys = []
+imgSrc = []
 for (const key in siteContent["main-content"]) {
-  mainContentProperties.push(siteContent["main-content"][key])
+  if (key.includes("h4")) {
+    h4Keys.push(siteContent["main-content"][key])
+  }
+  else if (key.includes("content")) {
+    contentKeys.push(siteContent["main-content"][key])
+  }
+  else {
+    imgSrc.push(siteContent["main-content"][key])
+  }
 }
 
-let mainContent = document.querySelector(".main-content").children;
-mainContent[0].children[0].children[0].innerText = mainContentProperties[0];
-mainContent[0].children[0].children[1].innerText = mainContentProperties[1];
-mainContent[0].children[1].children[0].innerText = mainContentProperties[2];
-mainContent[0].children[1].children[1].innerText = mainContentProperties[3];
-mainContent[1].setAttribute('src', mainContentProperties[4]);
-mainContent[2].children[0].children[0].innerText = mainContentProperties[5];
-mainContent[2].children[0].children[1].innerText = mainContentProperties[6];
-mainContent[2].children[1].children[0].innerText = mainContentProperties[7];
-mainContent[2].children[1].children[1].innerText = mainContentProperties[8];
-mainContent[2].children[2].children[0].innerText = mainContentProperties[9];
-mainContent[2].children[2].children[1].innerText = mainContentProperties[10];
+let mainContentH4 = document.querySelectorAll(".text-content h4");
+let mainContentP = document.querySelectorAll(".text-content p");
+let mainContentImg = document.querySelector("#middle-img");
+
+i = 0
+mainContentH4.forEach(element => {
+  element.innerText = h4Keys[counter()];
+});
+
+mainContentImg.setAttribute('src', imgSrc[0]);
+
+i = 0
+mainContentP.forEach(element => {
+  element.innerText = contentKeys[counter()];
+});
+
+
 
 
 let contactProperties = []
 for (const key in siteContent["contact"]) {
   contactProperties.push(siteContent["contact"][key])
 }
-console.log(contactProperties)
 
 i = 0;
 let contactH4 = document.querySelector(".contact h4");
@@ -110,6 +129,8 @@ contactH4.innerText = contactProperties[counter()]
 contactP.forEach(element => {
   element.innerText = contactProperties[counter() + 1];
 });
+
+
 
 
 let footer = document.querySelector("footer p");
