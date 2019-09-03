@@ -69,6 +69,9 @@ navAnchor.forEach(element => {
 
 
 
+
+
+
 let ctaProperties = []
 for (const key in siteContent["cta"]) {
   ctaProperties.push(siteContent["cta"][key])
